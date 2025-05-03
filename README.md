@@ -1,27 +1,50 @@
-# Iot
+# 基于 GO 语言实现的零度物联网平台
 
-## Update Node Modules
+零度物联网云平台是一个基于 GO 语言实现的物联网云平台，旨在为开发者提供一个高效、易用的物联网解决方案。该平台支持多种设备接入，提供数据存储、分析和可视化等功能，帮助用户快速构建物联网应用。所使用的技术栈如下。
 
-```bash
-npx npm-check-updates -u
-npm install
-```
+## 微服务端技术栈
 
-├─cmd
-├─common
-├─config
-├─controllers
-├─internal
-├─middleware
-├─migrations
-├─model
-├─repositories
-├─routers
-├─services
-├─storage
-├─tests
-└─utils
+Go 语言：作为主要开发语言，具有高性能和并发处理能力。
 
-https://github.com/songquanpeng/gin-template
+Gin：一个高性能的 HTTP Web 框架，用于构建 RESTful API。
 
-https://github.com/veops/gin-api-template
+Gorm：一个强大的 ORM 库，用于与数据库进行交互。
+
+Viper：一个用于管理应用程序配置的库，支持多种配置格式，零度物联网云平台使用 YAML 格式。
+
+PostgreSQL：一个开源的关系型数据库，支持复杂查询和事务处理.
+
+TimescaleDB：一个基于 PostgreSQL 的时序数据库，专门用于处理时间序列数据，适合物联网数据存储和分析。
+
+jwt-go：一个用于生成和验证 JSON Web Token 的库，支持用户认证和授权。
+
+
+## 前端技术栈
+
+React：一个用于构建用户界面的 JavaScript 库，具有组件化和虚拟 DOM 的特点。
+
+Next.js：一个基于 React 的服务端渲染框架，支持静态网站生成和 API 路由。
+
+Material-UI：一个流行的 React UI 组件库，提供了一套现代化的设计规范和组件。
+
+TypeScript：JavaScript 的超集，提供静态类型检查和更好的开发体验。
+
+Tailwind CSS：一个实用优先的 CSS 框架，提供了一套灵活的样式类，方便快速构建响应式布局。
+
+CASL React：一个用于权限控制的库，支持基于角色和属性的访问控制。
+
+
+## 部署与运维
+
+Docker：一个开源的容器化平台，用于打包、分发和运行应用程序。
+
+Kubernetes：一个开源的容器编排平台，用于自动化部署、扩展和管理容器化应用程序。
+
+Helm：一个 Kubernetes 包管理工具，用于简化应用程序的部署和管理。
+
+Prometheus：一个开源的监控和报警系统，用于收集和存储时间序列数据，支持多种数据源和可视化工具。
+
+Grafana：一个开源的可视化工具，用于展示和分析时间序列数据，支持多种数据源和插件。
+
+Loki：一个开源的日志聚合工具，用于收集、存储和分析日志数据，支持多种数据源和可视化工具。
+
