@@ -18,6 +18,7 @@ func main() {
 	router := gin.Default()
 
 	dsn := appConfig.GetString("database.dsn")
+	database.RunMigrations(dsn)
 	db, err := database.InitDB(dsn)
 
 	if err != nil {

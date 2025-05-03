@@ -3,7 +3,6 @@ package database
 import (
 	"fmt"
 
-	"github.com/bit365/iotcloud/services/webapi/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
@@ -20,9 +19,5 @@ func InitDB(dsn string) (*gorm.DB, error) {
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
 
-	if err = db.AutoMigrate(&models.User{}); err != nil {
-		return nil, fmt.Errorf("failed to migrate database: %w", err)
-	}
-
-	return db, err
+	return db, nil
 }
