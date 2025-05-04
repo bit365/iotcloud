@@ -15,10 +15,14 @@ func RunMigrations(dsn string) {
 	)
 
 	if err != nil {
-		log.Fatalf("Failed to create migration instance: %v", err)
+		log.Println("Failed to create migration instance:", err)
+		return
 	}
-	if err := m.Up(); err != nil {
-		log.Fatalf("Failed to apply migrations: %v", err)
+
+	if err := m.Up(); err != migrate.ErrNoChange {
+		log.Println("Failed to apply migrations:", err)
+		return
 	}
-	log.Println("Migrations applied successfully.")
+
+	log.Println("Migrations applied successfully")
 }

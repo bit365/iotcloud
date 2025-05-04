@@ -27,6 +27,12 @@ func main() {
 		log.Fatalf("Could not initialize database: %v", err)
 	}
 
+	router.GET("/hello", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Hello World!",
+		})
+	})
+
 	router.Use(middleware.Logger())
 	routers.SetupRouter(router, db)
 

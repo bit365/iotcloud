@@ -4,31 +4,36 @@
         {
             "label": "Start Docker Compose",
             "type": "shell",
-            "command": "docker-compose",
+            "command": "docker",
             "args": [
+                "compose",
                 "-f",
-                "${workspaceFolder}/scripts/docker-compose.yml",
+                "${workspaceFolder}/scripts/docker-compose.yaml",
                 "up",
+                "-d"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/scripts",
             },
+            "problemMatcher": []
         },
         {
             "label": "Stop Docker Compose",
             "type": "shell",
-            "command": "docker-compose",
+            "command": "docker",
             "args": [
+                "compose",
                 "-f",
-                "${workspaceFolder}/scripts/docker-compose.yml",
+                "${workspaceFolder}/scripts/docker-compose.yaml",
                 "down"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/scripts",
             },
+            "problemMatcher": []
         },
         {
-            "label": "Install Golang Migrate",
+            "label": "Install Golang Migrate Tool",
             "type": "shell",
             "command": "go",
             "args": [
@@ -36,10 +41,11 @@
                 "-tags",
                 "postgres",
                 "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
-            ]
+            ],
+            "problemMatcher": []
         },
         {
-            "label": "Run Migrations (Up)",
+            "label": "Apply Database Migrations (Up)",
             "type": "shell",
             "command": "migrate",
             "args": [
@@ -52,9 +58,10 @@
             "options": {
                 "cwd": "${workspaceFolder}/services/webapi"
             },
+            "problemMatcher": []
         },
         {
-            "label": "Run Migrations (Down)",
+            "label": "Revert Database Migrations (Down)",
             "type": "shell",
             "command": "migrate",
             "args": [
@@ -67,9 +74,10 @@
             "options": {
                 "cwd": "${workspaceFolder}/services/webapi"
             },
+            "problemMatcher": []
         },
         {
-            "label": "Run Migrations (Force)",
+            "label": "Force Database Migration Version",
             "type": "shell",
             "command": "migrate",
             "args": [
@@ -83,9 +91,10 @@
             "options": {
                 "cwd": "${workspaceFolder}/services/webapi"
             },
+            "problemMatcher": []
         },
         {
-            "label": "Run Migrations (Create)",
+            "label": "Create New Database Migration",
             "type": "shell",
             "command": "migrate",
             "args": [
@@ -103,9 +112,10 @@
             "options": {
                 "cwd": "${workspaceFolder}/services/webapi"
             },
+            "problemMatcher": []
         },
         {
-            "label": "Run Migrations (Redo)",
+            "label": "Redo Last Database Migration",
             "type": "shell",
             "command": "migrate",
             "args": [
@@ -118,6 +128,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/services/webapi"
             },
-        },  
+            "problemMatcher": []
+        },
     ]
 }
