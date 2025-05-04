@@ -1,0 +1,123 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Docker Compose",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "${workspaceFolder}/scripts/docker-compose.yml",
+                "up",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/scripts",
+            },
+        },
+        {
+            "label": "Stop Docker Compose",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "${workspaceFolder}/scripts/docker-compose.yml",
+                "down"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/scripts",
+            },
+        },
+        {
+            "label": "Install Golang Migrate",
+            "type": "shell",
+            "command": "go",
+            "args": [
+                "install",
+                "-tags",
+                "postgres",
+                "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
+            ]
+        },
+        {
+            "label": "Run Migrations (Up)",
+            "type": "shell",
+            "command": "migrate",
+            "args": [
+                "-path",
+                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "-database",
+                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
+                "up"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/services/webapi"
+            },
+        },
+        {
+            "label": "Run Migrations (Down)",
+            "type": "shell",
+            "command": "migrate",
+            "args": [
+                "-path",
+                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "-database",
+                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
+                "down"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/services/webapi"
+            },
+        },
+        {
+            "label": "Run Migrations (Force)",
+            "type": "shell",
+            "command": "migrate",
+            "args": [
+                "-path",
+                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "-database",
+                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
+                "force",
+                "1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/services/webapi"
+            },
+        },
+        {
+            "label": "Run Migrations (Create)",
+            "type": "shell",
+            "command": "migrate",
+            "args": [
+                "-path",
+                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "-database",
+                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
+                "create",
+                "-ext",
+                "sql",
+                "-dir",
+                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "${input:migrationName}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/services/webapi"
+            },
+        },
+        {
+            "label": "Run Migrations (Redo)",
+            "type": "shell",
+            "command": "migrate",
+            "args": [
+                "-path",
+                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "-database",
+                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
+                "redo"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/services/webapi"
+            },
+        },  
+    ]
+}

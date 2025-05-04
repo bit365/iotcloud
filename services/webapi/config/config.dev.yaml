@@ -1,4 +1,4 @@
 server:
   port: 8080
 database:
-  dsn: "host=localhost user=postgres password=postgres dbname=iotcloud port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+  iotcloud: "postgres://postgres:postgres@localhost:5432/iotcloud?sslmode=disable&TimeZone=Asia/Shanghai"

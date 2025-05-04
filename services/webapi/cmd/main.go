@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/bit365/iotcloud/services/webapi/config"
 	"github.com/bit365/iotcloud/services/webapi/internal/database"
@@ -12,17 +13,18 @@ import (
 )
 
 func main() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	appConfig := config.LoadConfig()
 
 	router := gin.Default()
 
-	dsn := appConfig.GetString("database.dsn")
-	database.RunMigrations(dsn)
-	db, err := database.InitDB(dsn)
+	database_connection_string := appConfig.GetString("database.iotcloud")
+	database.RunMigrations(database_connection_string)
+	db, err := database.InitDB(database_connection_string)
 
 	if err != nil {
-		panic(err)
+		log.Fatalf("Could not initialize database: %v", err)
 	}
 
 	router.Use(middleware.Logger())
