@@ -8,7 +8,7 @@
             "args": [
                 "compose",
                 "-f",
-                "${workspaceFolder}/scripts/docker-compose.yaml",
+                "docker-compose.yaml",
                 "up",
                 "-d"
             ],
@@ -24,7 +24,7 @@
             "args": [
                 "compose",
                 "-f",
-                "${workspaceFolder}/scripts/docker-compose.yaml",
+                "docker-compose.yaml",
                 "down"
             ],
             "options": {
@@ -33,15 +33,21 @@
             "problemMatcher": []
         },
         {
-            "label": "Install Golang Migrate Tool",
+            "label": "Add New Migration",
             "type": "shell",
-            "command": "go",
+            "command": "migrate",
             "args": [
-                "install",
-                "-tags",
-                "postgres",
-                "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
+                "create",
+                "-ext",
+                "sql",
+                "-dir",
+                "internal/database/migrations",
+                "-seq",
+                "${input:migrationName}"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/services/webapi"
+            },
             "problemMatcher": []
         },
         {
@@ -50,9 +56,9 @@
             "command": "migrate",
             "args": [
                 "-path",
-                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "internal/database/migrations",
                 "-database",
-                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
+                "${input:databaseUrl}",
                 "up"
             ],
             "options": {
@@ -66,26 +72,10 @@
             "command": "migrate",
             "args": [
                 "-path",
-                "${workspaceFolder}/services/webapi/internal/database/migrations",
+                "internal/database/migrations",
                 "-database",
-                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
-                "down"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}/services/webapi"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Force Database Migration Version",
-            "type": "shell",
-            "command": "migrate",
-            "args": [
-                "-path",
-                "${workspaceFolder}/services/webapi/internal/database/migrations",
-                "-database",
-                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
-                "force",
+                "${input:databaseUrl}",
+                "down",
                 "1"
             ],
             "options": {
@@ -94,41 +84,29 @@
             "problemMatcher": []
         },
         {
-            "label": "Create New Database Migration",
+            "label": "Installing Migrate Tools",
             "type": "shell",
-            "command": "migrate",
+            "command": "go",
             "args": [
-                "-path",
-                "${workspaceFolder}/services/webapi/internal/database/migrations",
-                "-database",
-                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
-                "create",
-                "-ext",
-                "sql",
-                "-dir",
-                "${workspaceFolder}/services/webapi/internal/database/migrations",
-                "${input:migrationName}"
+                "install",
+                "-tags",
+                "postgres",
+                "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}/services/webapi"
-            },
             "problemMatcher": []
+        },
+    ],
+    "inputs": [
+        {
+            "id": "migrationName",
+            "type": "promptString",
+            "description": "Enter the name of the migration"
         },
         {
-            "label": "Redo Last Database Migration",
-            "type": "shell",
-            "command": "migrate",
-            "args": [
-                "-path",
-                "${workspaceFolder}/services/webapi/internal/database/migrations",
-                "-database",
-                "postgres://postgres:password@localhost:5432/postgres?sslmode=disable",
-                "redo"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}/services/webapi"
-            },
-            "problemMatcher": []
-        },
+            "id": "databaseUrl",
+            "type": "promptString",
+            "description": "Enter the database URL",
+            "default": "postgres://postgres:postgres@localhost:5432/iotcloud?sslmode=disable"
+        }
     ]
 }

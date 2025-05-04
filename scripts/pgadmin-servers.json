@@ -7,9 +7,7 @@
             "Port": 5432,
             "MaintenanceDB": "postgres",
             "Username": "postgres",
-            "Password": "postgres",
-            "SSLMode": "prefer",
-            "Connected": true
+            "SSLMode": "prefer"
         }
     }
 }
