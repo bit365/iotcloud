@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/bit365/iotcloud/services/webapi/config"
@@ -36,6 +35,6 @@ func main() {
 	router.Use(middleware.Logger())
 	routers.SetupRouter(router, db)
 
-	port := fmt.Sprintf(":%d", appConfig.GetInt("server.port"))
-	router.Run(port)
+	addr := appConfig.GetString("server.address")
+	router.Run(addr)
 }

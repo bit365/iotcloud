@@ -1,4 +1,4 @@
 server:
-  port: 8080
+  address: 127.0.0.1:8000
 database:
   iotcloud: "postgres://postgres:postgres@localhost:5432/iotcloud?sslmode=disable&TimeZone=Asia/Shanghai"
