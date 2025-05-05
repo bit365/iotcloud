@@ -9,7 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/services/webapi/cmd/main.go",
+            "program": "${workspaceFolder}/services/webapi/cmd/api-server/main.go",
             "cwd": "${workspaceFolder}/services/webapi"
         },
         {
