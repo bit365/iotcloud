@@ -20,6 +20,12 @@ Casbin：一个强大且高效的开源权限访问控制库，支持 RBAC、ABA
 
 Casdoor：身份访问管理单点登录平台，具有支持 OAuth 2.0、OIDC、SAML、CAS、LDAP、和 Kerberos 等多种身份验证协议的功能。
 
+Swag: 将 Go 注释转换为 Swagger 文档，支持自动生成 API 文档。
+
+Gin-Swagger：中间件自动生成 RESTful API 文档，使用 Swagger 2.0。
+
+OpenTelemetry-Go：一个用于分布式追踪和监控的库，支持多种后端，如 Jaeger、Zipkin 和 Prometheus。
+
 ## 数据库和中间件
 
 PostgreSQL：一个开源的关系型数据库，支持复杂查询和事务处理.
@@ -59,5 +65,7 @@ Helm：一个 Kubernetes 包管理工具，用于简化应用程序的部署和�
 Prometheus：一个开源的监控和报警系统，用于收集和存储时间序列数据，支持多种数据源和可视化工具。
 
 Grafana：一个开源的可视化工具，用于展示和分析时间序列数据，支持多种数据源和插件。
+
+Jaeger：一个开源的分布式追踪系统，用于监控和分析微服务架构中的请求流。
 
 Loki：一个开源的日志聚合工具，用于收集、存储和分析日志数据，支持多种数据源和可视化工具。
